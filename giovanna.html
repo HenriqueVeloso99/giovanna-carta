@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te amoo💓</title>
+
+    <style>
+        body {
+            background-color: #f1bede;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .title {
+            color: #ad3838;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            margin-top: -150px;
+        }
+
+        .button {
+            width: 120px;
+            height: 40px;
+            background-color: transparent;
+            border: 2px solid #d38585;
+            color: #d38585;
+            border-radius: 4px;
+            margin-top: 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #d38585;
+            color: antiquewhite;
+        }
+
+        #envelope {
+            position: relative;
+            width: 380px;
+            height: 280px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            background-color: rgb(201, 84, 201);
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+            overflow: hidden;
+        }
+
+        #flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgb(161, 64, 161);
+            top: 0;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transition: transform .6s;
+            transform-origin: top;
+            z-index: 3;
+        }
+
+        #letter {
+            position: absolute;
+            width: 90%;
+            height: 210px;
+            color: #64422f;
+            background: rgb(235, 211, 189);
+            left: 5%;
+            top: 80px;
+            border-radius: 4px;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform .6s;
+            z-index: 2;
+        }
+
+        .open #letter {
+            transform: translateY(-30%);
+        }
+
+        .open #flap {
+            transform: rotateX(180deg);
+        }
+
+        .heart {
+            position: absolute;
+            bottom: 20px;
+            font-size: 22px;
+            animation: floatUp 2s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes floatUp {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-120px) scale(1.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <p><strong>Para Giovanna: <br> 💕 Oiieeee, fiz essa carta só pra te lembrar do quanto eu amo e pra te lembrar de
+                como você é especial! </strong></p>
+    </div>
+
+
+    <div id="envelope">
+        <div id="flap"></div>
+
+        <div id="letter">
+            <p>Muito obrigado por estar sempre comigo, por me fazer sentir amado e por ser essa pessoa incrível que você
+                é<br>
+                Essa carta é pra sempre te lembrar do quanto eu te amo!💓<br>
+                *farei outras.</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="button" onclick="openEnvelope()">ABRIR</button>
+        <button class="button" onclick="closeEnvelope()">FECHAR</button>
+    </div>
+
+</body>
+
+<script>
+    const envelope = document.getElementById('envelope');
+
+    function openEnvelope() {
+        envelope.classList.add('open');
+        spawnHearts();
+    }
+
+    function closeEnvelope() {
+        envelope.classList.remove('open');
+    }
+
+    function spawnHearts() {
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '💗';
+            heart.style.left = Math.random() * 200 + 40 + 'px';
+            envelope.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 2000);
+        }
+    }
+</script>
+
+</html>
